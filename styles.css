@@ -1,0 +1,8 @@
+/* profile image styling */
+img.profile {
+  width: 100%;
+  max-width: 300px;   /* control how big it gets */
+  height: auto;
+  border-radius: 0;   /* removes circle → square */
+  display: block;
+}
