@@ -6,8 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Zach Wilde">
 
-<title>Zach Wilde</title>
+<title>Predicting Religion from Flag Attributes – Zach Wilde</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -68,6 +69,8 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
 
 
 <link rel="stylesheet" href="styles.css">
@@ -93,7 +96,7 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./index.html" aria-current="page"> 
+    <a class="nav-link" href="./index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
 </ul>
@@ -109,46 +112,311 @@ ul.task-list li input[type="checkbox"] {
 <!-- margin-sidebar -->
     
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Predicting Religion from Flag Attributes</h1>
+</div>
 
 
 
+<div class="quarto-title-meta">
 
-<section id="zach-wilde" class="level1">
-<h1>Zach Wilde</h1>
-<p><img src="profile.jpg" class="profile img-fluid"></p>
-<p>Salt Lake City, UT</p>
-<p><strong>MS Statistics | Data Scientist</strong></p>
-<p>I build predictive models and extract insight from complex data.</p>
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Zach Wilde </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="abstract" class="level2">
+<h2 class="anchored" data-anchor-id="abstract">Abstract</h2>
+<p>This project applies multivariate statistical classification methods to predict the dominant religion of a country using physical attributes of national flags, along with geographic and demographic variables. Multiple models are compared to evaluate predictive performance and to explore whether symbolic flag characteristics provide meaningful signals about religion.</p>
+</section>
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<p>The purpose of this project is to determine whether a country’s dominant religion can be predicted using observable attributes of its national flag, along with geographic and demographic characteristics.</p>
+<p>Flags often contain colors, symbols, and patterns that may reflect cultural or religious identity. This project investigates whether those features contain enough statistical signal to distinguish between religions.</p>
+<p>The central research question is:</p>
 <ul>
-<li><a href="resume.html">Resume →</a></li>
-</ul>
-<section id="projects" class="level2">
-<h2 class="anchored" data-anchor-id="projects">Projects</h2>
-<section id="tiktok-engagement-masters-thesis" class="level3">
-<h3 class="anchored" data-anchor-id="tiktok-engagement-masters-thesis">TikTok Engagement Master’s Thesis</h3>
-<p>Built an end-to-end pipeline on ~7,000 TikTok videos to identify drivers of content exposure using feature engineering, time modeling, and regularized regression.</p>
-<ul>
-<li><a href="thesis.html">View Project →</a></li>
+<li>Can flag attributes and country-level characteristics predict dominant religion?</li>
 </ul>
 </section>
-<section id="classifying-crime-in-us-cities" class="level3">
-<h3 class="anchored" data-anchor-id="classifying-crime-in-us-cities">Classifying Crime in US Cities</h3>
-<p>Used PCA, LDA, and QDA to classify communities as high vs.&nbsp;low crime based on socioeconomic variables, achieving ~81% test accuracy.</p>
+<section id="data" class="level2">
+<h2 class="anchored" data-anchor-id="data">Data</h2>
+<p>The dataset comes from the UCI Machine Learning Repository and includes 194 countries with 30 attributes.</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table caption-top table-sm table-striped small">
+<caption>Dataset Overview</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Description</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Number of countries</td>
+<td style="text-align: left;">194</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Number of variables</td>
+<td style="text-align: left;">30</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Response variable</td>
+<td style="text-align: left;">Religion (8 classes)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Train/Test split</td>
+<td style="text-align: left;">80% / 20%</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<section id="religion-distribution" class="level3">
+<h3 class="anchored" data-anchor-id="religion-distribution">Religion Distribution</h3>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table caption-top table-sm table-striped small">
+<caption>Distribution of Religion Classes</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Religion</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Count</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Catholic</td>
+<td style="text-align: right;">40</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Other Christian</td>
+<td style="text-align: right;">60</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Muslim</td>
+<td style="text-align: right;">36</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Buddhist</td>
+<td style="text-align: right;">8</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Hindu</td>
+<td style="text-align: right;">4</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Ethnic</td>
+<td style="text-align: right;">27</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Marxist</td>
+<td style="text-align: right;">15</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Other</td>
+<td style="text-align: right;">4</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section id="numeric-variable-summary" class="level3">
+<h3 class="anchored" data-anchor-id="numeric-variable-summary">Numeric Variable Summary</h3>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table caption-top table-sm table-striped small">
+<caption>Mean of Numeric Variables</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Variable</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Mean</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Area</td>
+<td style="text-align: right;">700.05</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Population</td>
+<td style="text-align: right;">23.27</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Bars</td>
+<td style="text-align: right;">0.45</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Stripes</td>
+<td style="text-align: right;">1.55</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Colors</td>
+<td style="text-align: right;">3.46</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Circles</td>
+<td style="text-align: right;">0.17</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Crosses</td>
+<td style="text-align: right;">0.15</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Saltires</td>
+<td style="text-align: right;">0.09</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Quarters</td>
+<td style="text-align: right;">0.15</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Sunstars</td>
+<td style="text-align: right;">1.39</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section id="flag-attribute-frequencies" class="level3">
+<h3 class="anchored" data-anchor-id="flag-attribute-frequencies">Flag Attribute Frequencies</h3>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="flags_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="methods" class="level2">
+<h2 class="anchored" data-anchor-id="methods">Methods</h2>
+<p>Three classification methods were used:</p>
+<section id="multinomial-logistic-regression" class="level3">
+<h3 class="anchored" data-anchor-id="multinomial-logistic-regression">1. Multinomial Logistic Regression</h3>
+<p>Used because the response variable has multiple categories (8 religions). The model estimates probabilities for each class using predictor variables.</p>
+</section>
+<section id="discriminant-analysis" class="level3">
+<h3 class="anchored" data-anchor-id="discriminant-analysis">2. Discriminant Analysis</h3>
+<p>Used to separate observations into predefined groups. This method assumes underlying distributional structure and attempts to maximize separation between classes.</p>
+</section>
+<section id="decision-tree" class="level3">
+<h3 class="anchored" data-anchor-id="decision-tree">3. Decision Tree</h3>
+<p>Used to identify important variables and hierarchical splits. This method provides interpretability by showing how predictions are made step-by-step.</p>
+<p>All models were evaluated using an 80/20 train-test split, and performance was measured using classification accuracy and confusion matrices.</p>
+</section>
+</section>
+<section id="results" class="level2">
+<h2 class="anchored" data-anchor-id="results">Results</h2>
+<section id="model-performance" class="level3">
+<h3 class="anchored" data-anchor-id="model-performance">Model Performance</h3>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table caption-top table-sm table-striped small">
+<caption>Model Performance Comparison</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Model</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Accuracy</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">CI_Lower</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">CI_Upper</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Multinomial Logistic Regression</td>
+<td style="text-align: right;">0.5385</td>
+<td style="text-align: right;">0.3718</td>
+<td style="text-align: right;">0.6991</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Discriminant Analysis</td>
+<td style="text-align: right;">0.5641</td>
+<td style="text-align: right;">0.3962</td>
+<td style="text-align: right;">0.7219</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Decision Tree</td>
+<td style="text-align: right;">0.6923</td>
+<td style="text-align: right;">0.5243</td>
+<td style="text-align: right;">0.8298</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section id="decision-tree-1" class="level3">
+<h3 class="anchored" data-anchor-id="decision-tree-1">Decision Tree</h3>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="figures/decision_tree.png" class="img-fluid figure-img" width="581"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="discussion" class="level2">
+<h2 class="anchored" data-anchor-id="discussion">Discussion</h2>
+<p>The decision tree model performed the best, achieving approximately 69% accuracy, outperforming both logistic regression and discriminant analysis.</p>
+<p>This suggests that geographic and structural variables such as landmass, region, and language play a larger role in predicting religion than purely visual flag attributes.</p>
+<p>While logistic regression was expected to perform well due to regularization, it performed the worst. This may be due to the complexity of separating eight categories using a linear decision boundary.</p>
+<p>Discriminant analysis performed slightly better, likely because it is designed specifically for classification between groups.</p>
+<p>Overall, results indicate that religion is more strongly tied to location and cultural context than to flag design alone.</p>
+</section>
+<section id="conclusion" class="level2">
+<h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
+<p>This project demonstrates that:</p>
 <ul>
-<li><a href="crime.html">View Project →</a></li>
+<li>Religion can be predicted with moderate accuracy (~50–70%)</li>
+<li>Geographic variables are stronger predictors than visual flag features</li>
+<li>Decision trees provide both the best performance and interpretability</li>
+</ul>
+<p>While flag attributes contain some signal, they are not sufficient on their own to fully classify religion.</p>
+</section>
+<section id="future-work" class="level2">
+<h2 class="anchored" data-anchor-id="future-work">Future Work</h2>
+<p>Future research could explore:</p>
+<ul>
+<li>Symbolism in architecture and art instead of flags</li>
+<li>Incorporating additional cultural variables</li>
+<li>Using ensemble methods for improved prediction</li>
 </ul>
 </section>
-<section id="predicting-religion-from-country-flag" class="level3">
-<h3 class="anchored" data-anchor-id="predicting-religion-from-country-flag">Predicting Religion from Country Flag</h3>
-<p>Compared multinomial regression, discriminant analysis, and decision trees to predict dominant religion from flag attributes and geography.</p>
-<ul>
-<li><a href="flags.html">View Project →</a></li>
-</ul>
+<section id="references" class="level2">
+<h2 class="anchored" data-anchor-id="references">References</h2>
+<ol type="1">
+<li>Johnson, R. A., &amp; Wichern, D. W. Applied Multivariate Statistical Analysis</li>
+<li>glmnet documentation: https://glmnet.stanford.edu</li>
+<li>UCI Flags Dataset: https://archive.ics.uci.edu/ml/datasets/Flags</li>
+</ol>
+</section>
+<section id="appendix" class="level2">
+<h2 class="anchored" data-anchor-id="appendix">Appendix</h2>
+<p>Full modeling code available upon request</p>
 
 
-</section>
-</section>
 </section>
 
 </main> <!-- /main -->

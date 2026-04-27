@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "Zach Wilde",
     "section": "",
-    "text": "Salt Lake City, UT\nMS Statistics | Data Scientist\nI build predictive models and extract insight from complex data.\n\nResume →\n\n\n\n\n\nA statistical analysis of what drives content exposure on TikTok.\n\nView Project →\n\n\n\n\nExplanation\n\nView Project →\n\n\n\n\nExplanation\n\nView Project →\n\n\n\n\n3TB NAS for storage of ~7,000 TikTok videos, used to support full modeling pipeline for Master’s Thesis.\n\nView Project →\n\n\n\n\nCustom-built gaming PC designed inside the original 2001 Xbox.\n\nView Project →"
+    "text": "Salt Lake City, UT\nMS Statistics | Data Scientist\nI build predictive models and extract insight from complex data.\n\nResume →\n\n\n\n\n\nBuilt an end-to-end pipeline on ~7,000 TikTok videos to identify drivers of content exposure using feature engineering, time modeling, and regularized regression.\n\nView Project →\n\n\n\n\nUsed PCA, LDA, and QDA to classify communities as high vs. low crime based on socioeconomic variables, achieving ~81% test accuracy.\n\nView Project →\n\n\n\n\nCompared multinomial regression, discriminant analysis, and decision trees to predict dominant religion from flag attributes and geography.\n\nView Project →"
   },
   {
     "objectID": "index.html#data-scientist-ms-statistics",
@@ -165,6 +165,139 @@
     "href": "index.html#projects",
     "title": "Zach Wilde",
     "section": "",
-    "text": "A statistical analysis of what drives content exposure on TikTok.\n\nView Project →\n\n\n\n\nExplanation\n\nView Project →\n\n\n\n\nExplanation\n\nView Project →\n\n\n\n\n3TB NAS for storage of ~7,000 TikTok videos, used to support full modeling pipeline for Master’s Thesis.\n\nView Project →\n\n\n\n\nCustom-built gaming PC designed inside the original 2001 Xbox.\n\nView Project →"
+    "text": "Built an end-to-end pipeline on ~7,000 TikTok videos to identify drivers of content exposure using feature engineering, time modeling, and regularized regression.\n\nView Project →\n\n\n\n\nUsed PCA, LDA, and QDA to classify communities as high vs. low crime based on socioeconomic variables, achieving ~81% test accuracy.\n\nView Project →\n\n\n\n\nCompared multinomial regression, discriminant analysis, and decision trees to predict dominant religion from flag attributes and geography.\n\nView Project →"
+  },
+  {
+    "objectID": "crime.html",
+    "href": "crime.html",
+    "title": "Crime Classification in U.S. Communities",
+    "section": "",
+    "text": "Crime rates vary widely across communities, but these differences are not random. They are often connected to broader socioeconomic conditions such as income, housing, employment, family structure, urban density, and demographic composition. The goal of this project is to investigate whether these community-level characteristics contain enough multivariate structure to distinguish between higher-crime and lower-crime communities.\nThe dataset used in this project is the Communities and Crime dataset from the UCI Machine Learning Repository. Each observation represents a U.S. community, and the variables describe demographic, economic, housing, policing, and population characteristics. The original response variable is ViolentCrimesPerPop, a normalized measure of violent crimes per population.\nRather than treating this only as a regression problem, this project reframes the outcome as a classification problem. Communities with violent crime above the median are labeled as High crime, while communities at or below the median are labeled as Low crime. This allows the analysis to focus on whether socioeconomic structure can separate communities into meaningful crime-level groups.\nThe main research question is:\n\nCan we tell which communities have high vs low crime based on their characteristics?\n\nTo answer this question, I use two statistical methods: Principal Component Analysis (PCA) and Linear Discriminant Analysis (LDA) / Quadratic Discriminant Analysis (QDA). PCA is used to reduce the dimensionality of the dataset and visualize structure. LDA and QDA are used to evaluate predictive classification performance."
+  },
+  {
+    "objectID": "crime.html#introduction",
+    "href": "crime.html#introduction",
+    "title": "Crime Classification in U.S. Communities",
+    "section": "",
+    "text": "Crime rates vary widely across communities, but these differences are not random. They are often connected to broader socioeconomic conditions such as income, housing, employment, family structure, urban density, and demographic composition. The goal of this project is to investigate whether these community-level characteristics contain enough multivariate structure to distinguish between higher-crime and lower-crime communities.\nThe dataset used in this project is the Communities and Crime dataset from the UCI Machine Learning Repository. Each observation represents a U.S. community, and the variables describe demographic, economic, housing, policing, and population characteristics. The original response variable is ViolentCrimesPerPop, a normalized measure of violent crimes per population.\nRather than treating this only as a regression problem, this project reframes the outcome as a classification problem. Communities with violent crime above the median are labeled as High crime, while communities at or below the median are labeled as Low crime. This allows the analysis to focus on whether socioeconomic structure can separate communities into meaningful crime-level groups.\nThe main research question is:\n\nCan we tell which communities have high vs low crime based on their characteristics?\n\nTo answer this question, I use two statistical methods: Principal Component Analysis (PCA) and Linear Discriminant Analysis (LDA) / Quadratic Discriminant Analysis (QDA). PCA is used to reduce the dimensionality of the dataset and visualize structure. LDA and QDA are used to evaluate predictive classification performance."
+  },
+  {
+    "objectID": "crime.html#data-prep",
+    "href": "crime.html#data-prep",
+    "title": "Crime Classification in U.S. Communities",
+    "section": "Data Prep",
+    "text": "Data Prep\n\n\n\nDataset Summary\n\n\nQuantity\nValue\n\n\n\n\nNumber of communities\n1994\n\n\nNumber of predictors used\n122\n\n\nResponse variable\nViolentCrimesPerPop\n\n\nClassification rule\nAbove median = High; at or below median = Low\n\n\nHigh crime communities\n993\n\n\nLow crime communities\n1001\n\n\n\n\n\nThe identifier variables were removed because the goal is not to model geographic labels directly, but rather to study whether measurable community characteristics explain differences in crime level. Missing numerical values were replaced using mean imputation, which provides a simple and reproducible way to retain observations without adding additional modeling complexity."
+  },
+  {
+    "objectID": "crime.html#methods",
+    "href": "crime.html#methods",
+    "title": "Crime Classification in U.S. Communities",
+    "section": "Methods",
+    "text": "Methods\nThe analysis uses two main approaches.\nFirst, PCA is used to reduce the high-dimensional predictor space into a smaller number of uncorrelated components. Since the dataset contains many socioeconomic variables, PCA helps identify whether the communities have lower-dimensional structure. All predictors were standardized before PCA so that variables measured on different scales contribute comparably.\nSecond, LDA and QDA are used for supervised classification. Both methods attempt to classify communities as high or low crime based on the first 10 principal components. The use of principal components helps avoid fitting LDA and QDA directly on a large number of correlated predictors. LDA assumes a shared covariance matrix across groups and produces a linear decision boundary. QDA allows different covariance matrices by group and produces a more flexible nonlinear boundary.\nModel assessment is performed using an 80/20 train-test split. LDA and QDA are trained on 80% of the data and evaluated on the remaining 20%."
+  },
+  {
+    "objectID": "crime.html#results",
+    "href": "crime.html#results",
+    "title": "Crime Classification in U.S. Communities",
+    "section": "Results",
+    "text": "Results\n\nPrincipal Component Analysis\n\n\n\nVariance Explained by the First Five Principal Components\n\n\nPrincipal_Component\nProportion_Variance_Explained\nCumulative_Variance_Explained\n\n\n\n\nPC1\n0.209\n0.209\n\n\nPC2\n0.142\n0.350\n\n\nPC3\n0.087\n0.437\n\n\nPC4\n0.068\n0.506\n\n\nPC5\n0.058\n0.563\n\n\n\n\n\nThe first principal component explains about 20.9% of the variation in the standardized predictors, while the second explains about 14.2%. Together, the first two components account for roughly 35% of the total variation. While this is not the majority of the variation, it is still substantial given the high dimensionality of the dataset, which contains over 100 variables. This indicates that a meaningful portion of the differences between communities can be summarized using just a few underlying patterns.\n\n\n\n\n\n\n\n\n\nThe PCA plot shows a clear pattern of separation between high and low crime communities, particularly along the first principal component. Communities with lower crime levels tend to appear on the right side of the plot (higher PC1 values), while higher crime communities are more concentrated on the left (lower PC1 values). Although the separation is not perfect, the overall structure suggests that crime level is strongly related to an underlying combination of community characteristics.\nTo better understand what this primary direction represents, the largest absolute loadings for the first principal component are shown below.\n\n\n\nTop 10 Variables Contributing to PC1\n\n\nVariable\nLoading\nAbs_Loading\n\n\n\n\nmedFamInc\n0.179\n0.179\n\n\nmedIncome\n0.178\n0.178\n\n\nPctKids2Par\n0.174\n0.174\n\n\npctWInvInc\n0.172\n0.172\n\n\nPctPopUnderPov\n-0.172\n0.172\n\n\nPctFam2Par\n0.171\n0.171\n\n\nPctYoungKids2Par\n0.170\n0.170\n\n\nperCapInc\n0.165\n0.165\n\n\npctWPubAsst\n-0.163\n0.163\n\n\nPctHousNoPhone\n-0.161\n0.161\n\n\n\n\n\nThese loadings help interpret PC1 as a broad socioeconomic dimension. Variables with large loadings contribute strongly to the direction where high- and low-crime communities separate most clearly.\n\n\nClassification Results\nPCA showed that there was structure in the data and that high and low crime communities appeared to separate in a lower dimensional space. This motivated using LDA and QDA to test if that structure could be used for accurate classification.\n\n\n\nClassification Accuracy on Test Set\n\n\nMethod\nAccuracy\n\n\n\n\nLDA\n0.809\n\n\nQDA\n0.714\n\n\n\n\n\nLDA achieved an accuracy of 80.9%, while QDA achieved an accuracy of 71.4%. This means that LDA correctly classified about four out of five test-set communities as high or low crime using only the first 10 principal components.\nThe stronger performance of LDA suggests that the separation between high and low crime communities is approximately linear in the reduced PCA space. QDA is more flexible because it estimates separate covariance structures for each class, but in this case that flexibility did not improve performance. The lower QDA accuracy suggests that QDA may be overfitting or estimating the group covariance matrices less stably.\n\n\n\nLDA Confusion Matrix\n\n\nPredicted\nHigh\nLow\n\n\n\n\nHigh\n154\n32\n\n\nLow\n44\n168\n\n\n\n\n\n\nQDA Confusion Matrix\n\n\nPredicted\nHigh\nLow\n\n\n\n\nHigh\n101\n17\n\n\nLow\n97\n183\n\n\n\n\n\nThe confusion matrices show that LDA has relatively balanced performance across both classes. It correctly classified 154 high crime communities and 168 low crime communities in the test set. QDA correctly classified many low crime communities, but it misclassified a larger number of high-crime communities as low crime. This supports the conclusion that LDA provides the more reliable classification rule for this dataset."
+  },
+  {
+    "objectID": "crime.html#discussion",
+    "href": "crime.html#discussion",
+    "title": "Crime Classification in U.S. Communities",
+    "section": "Discussion",
+    "text": "Discussion\nThe results provide consistent evidence that socioeconomic and demographic characteristics contain meaningful information about community crime levels. PCA showed that the first two principal components reveal visible structure in the data, with high and low crime communities separating most clearly along PC1. LDA then showed that this structure is predictive, achieving 80.9% accuracy on the held-out test set.\nOne important finding is that LDA outperformed QDA. This suggests that a simpler linear boundary was more effective than a more flexible quadratic boundary. In practical terms, this means that the difference between high- and low-crime communities may be captured reasonably well by a linear combination of the principal components. QDA may have been too flexible for this setting, especially because it requires estimating separate covariance matrices for each group.\nThere are several limitations. First, the high and low crime labels were created using a median split. This makes the classification task clean and balanced, but it also simplifies a continuous outcome. Communities just above and just below the median may be very similar in actual crime rate but placed into different groups. Second, missing values were handled with mean imputation, which is simple but may reduce variability. Third, PCA improves visualization and reduces dimension, but principal components are less directly interpretable than original variables. Finally, this analysis is predictive and descriptive, not causal. The results show that socioeconomic variables are associated with crime level, but they do not prove that any specific variable causes crime to increase or decrease.\nOverall, this project shows that a relatively small set of statistical tools can provide a clear picture of a complex dataset with many features. PCA revealed the main structure and LDA provided strong classification performance. Together, these methods suggest that crime levels are closely connected to underlying socioeconomic differences across communities."
+  },
+  {
+    "objectID": "crime.html#conclusion",
+    "href": "crime.html#conclusion",
+    "title": "Crime Classification in U.S. Communities",
+    "section": "Conclusion",
+    "text": "Conclusion\nThis project investigated whether socioeconomic characteristics can distinguish high crime from low crime communities. The analysis found that they can. PCA showed visible separation between crime groups, LDA classified communities with 80.9% test accuracy.\nThe main conclusion is that community crime levels are not isolated from broader socioeconomic structure. Instead, high and low crime communities differ in systematic multivariate ways. While the analysis does not establish causation, it provides strong evidence that statistical methods from multivariate analysis can identify meaningful structure in real community level crime data."
+  },
+  {
+    "objectID": "crime.html#appendix-a-code",
+    "href": "crime.html#appendix-a-code",
+    "title": "Crime Classification in U.S. Communities",
+    "section": "Appendix A: Code",
+    "text": "Appendix A: Code\n\nlibrary(tidyverse)\nlibrary(MASS)\nlibrary(caret)\nlibrary(knitr)\nlibrary(kableExtra)\n\nset.seed(123)\n\ncomm &lt;- read.table(\n  \"data/communities.data\",\n  sep = \",\",\n  na.strings = \"?\",\n  header = FALSE,\n  fill = TRUE,\n  stringsAsFactors = FALSE\n)\n\nnames_raw &lt;- readLines(\"data/communities.names\")\nattr_lines &lt;- names_raw[grepl(\"^@attribute\", names_raw)]\n\ncol_names &lt;- attr_lines %&gt;%\n  str_split(\"\\\\s+\") %&gt;%\n  map_chr(~ .x[2])\n\nif(length(col_names) != ncol(comm)) {\n  stop(\"Mismatch between data columns and parsed names\")\n}\n\ncolnames(comm) &lt;- col_names\n\ncomm &lt;- comm %&gt;%\n  dplyr::select(-state, -county, -community, -communityname, -fold)\n\ncomm_clean &lt;- comm %&gt;%\n  mutate(across(where(is.numeric), ~ ifelse(is.na(.), mean(., na.rm = TRUE), .))) %&gt;%\n  mutate(\n    crime_level = ifelse(\n      ViolentCrimesPerPop &gt; median(ViolentCrimesPerPop),\n      \"High\",\n      \"Low\"\n    ) %&gt;% factor()\n  )\n\nX &lt;- comm_clean %&gt;%\n  dplyr::select(-ViolentCrimesPerPop, -crime_level)\n\ny &lt;- comm_clean$crime_level\n\nX_scaled &lt;- scale(X)\n\npca &lt;- prcomp(X_scaled)\npve &lt;- (pca$sdev^2) / sum(pca$sdev^2)\n\npca_df &lt;- as_tibble(pca$x[, 1:2]) %&gt;%\n  mutate(crime_level = y)\n\ntrain_idx &lt;- createDataPartition(y, p = 0.8, list = FALSE)\n\ntrain_data &lt;- pca$x[train_idx, 1:10]\ntest_data  &lt;- pca$x[-train_idx, 1:10]\n\ntrain_labels &lt;- y[train_idx]\ntest_labels  &lt;- y[-train_idx]\n\nlda_model &lt;- lda(train_data, grouping = train_labels)\nlda_pred &lt;- predict(lda_model, test_data)$class\nlda_acc &lt;- mean(lda_pred == test_labels)\n\nqda_model &lt;- qda(train_data, grouping = train_labels)\nqda_pred &lt;- predict(qda_model, test_data)$class\nqda_acc &lt;- mean(qda_pred == test_labels)"
+  },
+  {
+    "objectID": "flags.html",
+    "href": "flags.html",
+    "title": "Predicting Religion from Flag Attributes",
+    "section": "",
+    "text": "This project applies multivariate statistical classification methods to predict the dominant religion of a country using physical attributes of national flags, along with geographic and demographic variables. Multiple models are compared to evaluate predictive performance and to explore whether symbolic flag characteristics provide meaningful signals about religion."
+  },
+  {
+    "objectID": "flags.html#abstract",
+    "href": "flags.html#abstract",
+    "title": "Predicting Religion from Flag Attributes",
+    "section": "",
+    "text": "This project applies multivariate statistical classification methods to predict the dominant religion of a country using physical attributes of national flags, along with geographic and demographic variables. Multiple models are compared to evaluate predictive performance and to explore whether symbolic flag characteristics provide meaningful signals about religion."
+  },
+  {
+    "objectID": "flags.html#introduction",
+    "href": "flags.html#introduction",
+    "title": "Predicting Religion from Flag Attributes",
+    "section": "Introduction",
+    "text": "Introduction\nThe purpose of this project is to determine whether a country’s dominant religion can be predicted using observable attributes of its national flag, along with geographic and demographic characteristics.\nFlags often contain colors, symbols, and patterns that may reflect cultural or religious identity. This project investigates whether those features contain enough statistical signal to distinguish between religions.\nThe central research question is:\n\nCan flag attributes and country-level characteristics predict dominant religion?"
+  },
+  {
+    "objectID": "flags.html#data",
+    "href": "flags.html#data",
+    "title": "Predicting Religion from Flag Attributes",
+    "section": "Data",
+    "text": "Data\nThe dataset comes from the UCI Machine Learning Repository and includes 194 countries with 30 attributes.\n\n\n\nDataset Overview\n\n\nDescription\nValue\n\n\n\n\nNumber of countries\n194\n\n\nNumber of variables\n30\n\n\nResponse variable\nReligion (8 classes)\n\n\nTrain/Test split\n80% / 20%\n\n\n\n\n\n\nReligion Distribution\n\n\n\nDistribution of Religion Classes\n\n\nReligion\nCount\n\n\n\n\nCatholic\n40\n\n\nOther Christian\n60\n\n\nMuslim\n36\n\n\nBuddhist\n8\n\n\nHindu\n4\n\n\nEthnic\n27\n\n\nMarxist\n15\n\n\nOther\n4\n\n\n\n\n\n\n\nNumeric Variable Summary\n\n\n\nMean of Numeric Variables\n\n\nVariable\nMean\n\n\n\n\nArea\n700.05\n\n\nPopulation\n23.27\n\n\nBars\n0.45\n\n\nStripes\n1.55\n\n\nColors\n3.46\n\n\nCircles\n0.17\n\n\nCrosses\n0.15\n\n\nSaltires\n0.09\n\n\nQuarters\n0.15\n\n\nSunstars\n1.39\n\n\n\n\n\n\n\nFlag Attribute Frequencies"
+  },
+  {
+    "objectID": "flags.html#methods",
+    "href": "flags.html#methods",
+    "title": "Predicting Religion from Flag Attributes",
+    "section": "Methods",
+    "text": "Methods\nThree classification methods were used:\n\n1. Multinomial Logistic Regression\nUsed because the response variable has multiple categories (8 religions). The model estimates probabilities for each class using predictor variables.\n\n\n2. Discriminant Analysis\nUsed to separate observations into predefined groups. This method assumes underlying distributional structure and attempts to maximize separation between classes.\n\n\n3. Decision Tree\nUsed to identify important variables and hierarchical splits. This method provides interpretability by showing how predictions are made step-by-step.\nAll models were evaluated using an 80/20 train-test split, and performance was measured using classification accuracy and confusion matrices."
+  },
+  {
+    "objectID": "flags.html#results",
+    "href": "flags.html#results",
+    "title": "Predicting Religion from Flag Attributes",
+    "section": "Results",
+    "text": "Results\n\nModel Performance\n\n\n\nModel Performance Comparison\n\n\nModel\nAccuracy\nCI_Lower\nCI_Upper\n\n\n\n\nMultinomial Logistic Regression\n0.5385\n0.3718\n0.6991\n\n\nDiscriminant Analysis\n0.5641\n0.3962\n0.7219\n\n\nDecision Tree\n0.6923\n0.5243\n0.8298\n\n\n\n\n\n\n\nDecision Tree"
+  },
+  {
+    "objectID": "flags.html#discussion",
+    "href": "flags.html#discussion",
+    "title": "Predicting Religion from Flag Attributes",
+    "section": "Discussion",
+    "text": "Discussion\nThe decision tree model performed the best, achieving approximately 69% accuracy, outperforming both logistic regression and discriminant analysis.\nThis suggests that geographic and structural variables such as landmass, region, and language play a larger role in predicting religion than purely visual flag attributes.\nWhile logistic regression was expected to perform well due to regularization, it performed the worst. This may be due to the complexity of separating eight categories using a linear decision boundary.\nDiscriminant analysis performed slightly better, likely because it is designed specifically for classification between groups.\nOverall, results indicate that religion is more strongly tied to location and cultural context than to flag design alone."
+  },
+  {
+    "objectID": "flags.html#conclusion",
+    "href": "flags.html#conclusion",
+    "title": "Predicting Religion from Flag Attributes",
+    "section": "Conclusion",
+    "text": "Conclusion\nThis project demonstrates that:\n\nReligion can be predicted with moderate accuracy (~50–70%)\nGeographic variables are stronger predictors than visual flag features\nDecision trees provide both the best performance and interpretability\n\nWhile flag attributes contain some signal, they are not sufficient on their own to fully classify religion."
+  },
+  {
+    "objectID": "flags.html#future-work",
+    "href": "flags.html#future-work",
+    "title": "Predicting Religion from Flag Attributes",
+    "section": "Future Work",
+    "text": "Future Work\nFuture research could explore:\n\nSymbolism in architecture and art instead of flags\nIncorporating additional cultural variables\nUsing ensemble methods for improved prediction"
+  },
+  {
+    "objectID": "flags.html#references",
+    "href": "flags.html#references",
+    "title": "Predicting Religion from Flag Attributes",
+    "section": "References",
+    "text": "References\n\nJohnson, R. A., & Wichern, D. W. Applied Multivariate Statistical Analysis\nglmnet documentation: https://glmnet.stanford.edu\nUCI Flags Dataset: https://archive.ics.uci.edu/ml/datasets/Flags"
+  },
+  {
+    "objectID": "flags.html#appendix",
+    "href": "flags.html#appendix",
+    "title": "Predicting Religion from Flag Attributes",
+    "section": "Appendix",
+    "text": "Appendix\nFull modeling code available upon request"
   }
 ]
