@@ -1,8 +1,168 @@
-/* profile image styling */
-img.profile {
+/* =========================
+   Fonts
+   ========================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap');
+
+:root {
+  --bs-body-font-family: "Geist", system-ui, sans-serif;
+}
+
+/* =========================
+   Base Typography
+   ========================= */
+
+body {
+  font-family: "Geist", system-ui, sans-serif;
+  font-size: 1.05rem;
+  line-height: 1.7;
+  max-width: 850px;
+  margin: 0 auto;
+}
+
+p {
+  margin-bottom: 1.2rem;
+}
+
+/* =========================
+   Headings
+   ========================= */
+
+h1 {
+  font-size: 3.2rem;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  margin-bottom: 0.25rem;
+}
+
+h2 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-top: 3rem;
+  margin-bottom: 1rem;
+}
+
+h3 {
+  font-size: 1.25rem;
+  font-weight: 650;
+  margin-top: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+/* =========================
+   Navigation
+   ========================= */
+
+.navbar {
+  font-weight: 500;
+}
+
+.navbar-brand {
+  font-weight: 700;
+}
+
+/* =========================
+   Links
+   ========================= */
+
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* =========================
+   Project Cards
+   ========================= */
+
+.project-card {
+  padding: 1.5rem;
+  border: 1px solid rgba(0,0,0,.08);
+  border-radius: 12px;
+  margin-bottom: 1.5rem;
+  transition: transform .15s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-2px);
+}
+
+/* =========================
+   Images
+   ========================= */
+
+img {
+  border-radius: 10px;
+}
+
+/* =========================
+   Hero Section
+   ========================= */
+
+.hero-subtitle {
+  font-size: 1.25rem;
+  color: #666;
+  margin-bottom: 2rem;
+}
+
+/* =========================
+   Footer
+   ========================= */
+
+footer {
+  margin-top: 4rem;
+  opacity: .7;
+  font-size: .9rem;
+}
+
+/* =========================
+   Page Width
+   ========================= */
+
+body {
+  max-width: 1100px;
+}
+
+/* =========================
+   Project Layout
+   ========================= */
+
+.project-row {
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+  margin-bottom: 5rem;
+}
+
+.project-text {
+  flex: 1;
+}
+
+.project-image {
+  flex: 1;
+}
+
+.project-image img {
   width: 100%;
-  max-width: 300px;   /* control how big it gets */
-  height: auto;
-  border-radius: 0;   /* removes circle → square */
-  display: block;
+  border-radius: 12px;
+  box-shadow: 0 8px 30px rgba(0,0,0,.12);
+}
+
+/* =========================
+   Mobile
+   ========================= */
+
+@media (max-width: 900px) {
+
+  .project-row {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .project-image {
+    width: 100%;
+  }
 }
