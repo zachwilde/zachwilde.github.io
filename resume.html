@@ -3900,8 +3900,10 @@ body {
 font-family: "Geist", system-ui, sans-serif;
 font-size: 1.05rem;
 line-height: 1.7;
-max-width: 850px;
+max-width: 1200px;
 margin: 0 auto;
+padding-left: 2rem;
+padding-right: 2rem;
 }
 p {
 margin-bottom: 1.2rem;
@@ -3941,6 +3943,31 @@ a:hover {
 text-decoration: underline;
 }
 
+.project-row {
+display: flex;
+align-items: center;
+gap: 3rem;
+margin-bottom: 5rem;
+}
+.project-text {
+flex: 3;
+}
+.project-image {
+flex: 2;
+}
+.project-image img {
+width: 100%;
+max-width: 100%;
+height: auto;
+display: block;
+border-radius: 12px;
+box-shadow: 0 8px 30px rgba(0,0,0,.12);
+transition: transform .2s ease;
+}
+.project-image img:hover {
+transform: scale(1.02);
+}
+
 .project-card {
 padding: 1.5rem;
 border: 1px solid rgba(0,0,0,.08);
@@ -3968,35 +3995,35 @@ opacity: .7;
 font-size: .9rem;
 }
 
+@media (max-width: 900px) {
 body {
-max-width: 1500px;
+padding-left: 1.25rem;
+padding-right: 1.25rem;
 }
-
 .project-row {
-display: flex;
-align-items: center;
-gap: 3rem;
-margin-bottom: 5rem;
+flex-direction: column;
+align-items: flex-start;
+gap: 1.25rem;
+margin-bottom: 4rem;
 }
-.project-text {
-flex: 1;
-}
+.project-text,
 .project-image {
-flex: 1;
+flex: none;
+width: 100%;
 }
 .project-image img {
 width: 100%;
-border-radius: 12px;
-box-shadow: 0 8px 30px rgba(0,0,0,.12);
 }
-
-@media (max-width: 900px) {
-.project-row {
-flex-direction: column;
-gap: 1rem;
 }
-.project-image {
-width: 100%;
+@media (max-width: 768px) {
+body {
+font-size: 1rem;
+}
+h1 {
+font-size: 2.4rem;
+}
+h2 {
+font-size: 1.5rem;
 }
 }</style>
 </head>
@@ -4061,21 +4088,30 @@ width: 100%;
 <section id="zach-wilde" class="level1">
 <h1>ZACH WILDE</h1>
 <hr>
-<p>Data and Analytics Professional with an M.S. in Statistics from the University of Utah and a track record of driving seven-figure business impact through predictive analytics, pricing analysis, and executive-facing decision support. Experience translating large-scale pricing, behavioral, and engagement data into actionable business insights across healthcare, telecommunications, and software environments. Comfortable across the full analytics workflow from data extraction and feature engineering to stakeholder communication and operational reporting. Grounded in statistical thinking and experimentation with experience building analytics workflows under noisy, real-world data conditions. Proficient in R, Python, SQL, Excel/VBA, Tableau, and Power BI.</p>
+<p>Business and Data Analyst with an M.S. in Statistics and experience translating complex data into financial, operational, and customer insights across healthcare, software, and telecommunications. Delivered analytics supporting $500K - $1M in realized annual business impact and informed $7.3M in marketing decisions through customer behavioral analysis. Skilled in SQL, Python, R, and Excel, with experience presenting actionable findings to executive stakeholders.</p>
 <hr>
 <section id="experience" class="level2">
 <h2 class="anchored" data-anchor-id="experience">Experience</h2>
+<section id="utah-valley-university" class="level3">
+<h3 class="anchored" data-anchor-id="utah-valley-university"><strong>Utah Valley University</strong></h3>
+<p><em>Aug 2026 – Present</em><br>
+<strong>Adjunct Professor, Business Statistics (MGMT 2340)</strong> · Orem, UT</p>
+<ul>
+<li>Teach business statistics to approximately 120 students across three course sections, connecting statistical analysis, hypothesis testing, and quantitative reasoning to real-world business decisions.</li>
+<li>Develop and deliver R-based instruction, applied projects, and assessments that strengthen analytical problem-solving, data interpretation, and communication of statistical findings.</li>
+</ul>
+<hr>
+</section>
 <section id="gbs-benefits" class="level3">
 <h3 class="anchored" data-anchor-id="gbs-benefits"><strong>GBS Benefits</strong></h3>
 <p><em>Aug 2024 – Aug 2025</em><br>
 <strong>Data Analyst (Statistical Modeling &amp; Pricing Analytics)</strong> · Salt Lake City, UT</p>
 <ul>
-<li>Owned pharmacy claims analytics across 15+ employer client groups, identifying multi-million-dollar savings opportunities through pricing analysis and opportunity-scoring frameworks.</li>
-<li>Generated $500K–$1M in realized annual business impact through analytics initiatives, with models and workflows projected to 2–3× that figure yearly.</li>
-<li>Designed pricing and savings-estimation logic under noisy, real-world claims data, improving consistency and stability across highly variable patient populations.</li>
-<li>Engineered Excel/VBA automation pipelines to reprice hundreds of thousands of pharmacy claims, improving scalability and reducing manual processing time.</li>
-<li>Built internal decision-support tools for PBM contract comparison and formulary optimization, supporting data-driven benefit strategy and client recommendations.</li>
-<li>Led backend enhancements in Deerwalk to identify high-cost member populations and prioritize outreach by expected savings impact.</li>
+<li>Led pricing and utilization analyses for 15+ employer client groups, identifying multimillion-dollar pharmacy cost-saving opportunities through claims analysis and financial modeling.</li>
+<li>Developed pricing models, analytical frameworks, and reporting tools supporting $500K - $1M in realized annual business impact through cost optimization and benefit strategy initiatives.</li>
+<li>Automated repricing of hundreds of thousands of pharmacy claims using Excel/VBA, improving scalability, consistency, and turnaround time for recurring analyses.</li>
+<li>Built decision-support tools for pharmacy benefit manager (PBM) contract comparisons, formulary optimization, and high-cost member analysis, translating complex datasets into actionable client recommendations.</li>
+<li>Designed savings-estimation and opportunity-scoring methodologies for highly variable claims populations, helping stakeholders prioritize interventions by expected financial impact.</li>
 </ul>
 <hr>
 </section>
@@ -4084,18 +4120,8 @@ width: 100%;
 <p><em>May 2023 – Jan 2024</em><br>
 <strong>Data Migration Specialist</strong> · Provo, UT</p>
 <ul>
-<li>Managed data conversion workflows for 100+ retail customers by extracting, validating, and manipulating data using SQL and related tools, ensuring seamless migration to a cloud-based platform.</li>
-<li>Built strong client trust through effective communication and technical problem-solving, resolving migration issues and owning the end-to-end onboarding process.</li>
-</ul>
-<hr>
-</section>
-<section id="independent-consulting" class="level3">
-<h3 class="anchored" data-anchor-id="independent-consulting"><strong>Independent Consulting</strong></h3>
-<p><em>Jun 2022 – Apr 2023</em><br>
-<strong>Data Consultant (Contract)</strong> · Orem, UT</p>
-<ul>
-<li>Built rolling forecasts informing headcount and resource allocation decisions as the sole analyst for a growing clinical organization.</li>
-<li>Analyzed behavioral health data and delivered client-facing reporting, translating raw operational data into clear narratives that guided leadership decisions on program expansion.</li>
+<li>Managed SQL and Excel-based data extraction, validation, transformation, and migration workflows for 100+ retail customers transitioning to a cloud-based software platform.</li>
+<li>Resolved complex data discrepancies and implementation challenges, coordinating with customers and technical teams to improve data integrity and onboarding outcomes.</li>
 </ul>
 <hr>
 </section>
@@ -4104,19 +4130,18 @@ width: 100%;
 <p><em>Jun 2022 – Aug 2022</em><br>
 <strong>Data Analyst</strong> · Orem, UT</p>
 <ul>
-<li>Applied inferential statistics to 1,000+ patient sleep study records to evaluate the clinical effectiveness of a sleep apnea device, translating statistical significance into actionable recommendations for medical and executive stakeholders.</li>
-<li>Collaborated with physicians and IT teams to build Power BI reporting and data-driven initiatives, contributing to measurable reductions in employee wait times for data requests and improvements in clinical workflow efficiency.</li>
+<li>Analyzed 1,000+ patient sleep study records using inferential statistics to evaluate clinical effectiveness and communicate findings to medical and executive stakeholders.</li>
+<li>Collaborated with physicians and IT teams to develop Power BI reporting and improve clinical data accessibility and workflow efficiency.</li>
 </ul>
 <hr>
 </section>
 <section id="dish-network" class="level3">
 <h3 class="anchored" data-anchor-id="dish-network"><strong>DISH Network</strong></h3>
 <p><em>Jun 2021 – Aug 2021</em><br>
-<strong>Operations &amp; Analytics Intern (Customer Behavior &amp; Marketing Analytics)</strong> · Denver, CO</p>
+<strong>Operations &amp; Analytics Intern</strong> · Denver, CO</p>
 <ul>
-<li>Conducted an independent behavioral analytics study of 65,000+ subscriber records in R, identifying patterns in Latino market segments that informed $7.3M in enterprise-level marketing decisions.</li>
-<li>Presented findings to 100+ executives, contributing to a major redesign of DISH’s Latino market web experience.</li>
-<li>Applied statistical analysis and data storytelling to connect behavioral patterns with business and marketing strategy.</li>
+<li>Analyzed 65,000+ subscriber records in R to identify behavioral patterns within Latino customer segments, informing $7.3M in enterprise-level marketing decisions.</li>
+<li>Presented analytical findings and strategic recommendations to 100+ stakeholders, including VP and C-suite executives, contributing to a redesign of DISH’s Latino market digital experience.</li>
 </ul>
 <hr>
 </section>
@@ -4127,19 +4152,9 @@ width: 100%;
 <h3 class="anchored" data-anchor-id="predictive-modeling-of-social-media-engagement-masters-thesis"><strong>Predictive Modeling of Social Media Engagement — Master’s Thesis</strong></h3>
 <p><em>Apr 2026</em></p>
 <ul>
-<li>Constructed a statistical modeling pipeline on ~7,000 TikTok videos with 40+ engineered features spanning temporal, linguistic, visual, and engagement dimensions.</li>
-<li>Designed nonlinear regression frameworks accounting for heavy-tailed engagement distributions and temporal effects in social media data (log and polynomial structures).</li>
-<li>Benchmarked OLS, Ridge, and Lasso via repeated train/test splits; demonstrated that Lasso’s automated feature selection (47 → 40 features) matched full-model accuracy with a leaner, more interpretable specification.</li>
-<li>Key finding: domain-driven feature engineering and temporal specification mattered more than model architecture in explaining engagement variance.</li>
-</ul>
-<hr>
-</section>
-<section id="multimodal-video-feature-extraction-pipeline" class="level3">
-<h3 class="anchored" data-anchor-id="multimodal-video-feature-extraction-pipeline"><strong>Multimodal Video Feature Extraction Pipeline</strong></h3>
-<p><em>Mar 2026</em></p>
-<ul>
-<li>Built a full data pipeline from scratch converting raw TikTok video URLs into structured, model-ready datasets using Whisper (audio transcription), Tesseract OCR (on-screen text), and OpenCV (visual frame analysis).</li>
-<li>Bridged unstructured video content and statistical modeling designed for repeatability and scalability across workflows.</li>
+<li>Developed an end-to-end statistical modeling workflow using 7,000+ TikTok videos and 40+ engineered features spanning temporal, linguistic, visual, and engagement data.</li>
+<li>Compared OLS, Ridge, and Lasso models using repeated training and testing, identifying feature engineering and temporal specification as key contributors to predictive performance.</li>
+<li>Built a repeatable multimodal data extraction pipeline using Whisper, Tesseract OCR, and OpenCV to convert unstructured video content into structured analytical datasets.</li>
 </ul>
 <hr>
 </section>
@@ -4151,45 +4166,39 @@ width: 100%;
 <p><em>Apr 2026</em><br>
 <strong>M.S. Statistics</strong> · Salt Lake City, UT</p>
 <ul>
-<li>Thesis: Predictive modeling of TikTok engagement via multimodal feature engineering and regularized regression.</li>
-<li>Coursework: Linear Models, Time Series, Computational Statistics, Mathematical Statistics, Graduate R &amp; Python</li>
+<li>Relevant Coursework: Linear Models, Time Series Analysis, Computational Statistics, Mathematical Statistics</li>
 </ul>
 <hr>
 </section>
-<section id="utah-valley-university" class="level3">
-<h3 class="anchored" data-anchor-id="utah-valley-university"><strong>Utah Valley University</strong></h3>
+<section id="utah-valley-university-1" class="level3">
+<h3 class="anchored" data-anchor-id="utah-valley-university-1"><strong>Utah Valley University</strong></h3>
 <p><em>May 2022</em><br>
 <strong>B.S. Statistics</strong> · Orem, UT</p>
-<ul>
-<li>Research: Bankruptcy prediction models for U.S. restaurant firms</li>
-</ul>
 <hr>
 </section>
 </section>
-<section id="leadership" class="level2">
-<h2 class="anchored" data-anchor-id="leadership">Leadership</h2>
-<p><strong>President &amp; Founder — Sports Analytics Club, University of Utah</strong></p>
-<ul>
-<li>Founded and led a university organization focused on applied sports analytics, collaborative modeling projects, and technical presentations.</li>
-</ul>
+<section id="additional-teaching-leadership" class="level2">
+<h2 class="anchored" data-anchor-id="additional-teaching-leadership">Additional Teaching &amp; Leadership</h2>
 <p><strong>Graduate Instructor — Applied Statistics I, University of Utah</strong></p>
 <ul>
-<li>Taught undergraduate statistics and R programming to 60+ students, translating statistical concepts into practical analytical reasoning.</li>
+<li>Taught statistical analysis and R programming to 60+ undergraduate students.</li>
+</ul>
+<p><strong>Founder &amp; President — Sports Analytics Club, University of Utah</strong></p>
+<ul>
+<li>Founded and led a university organization focused on applied sports analytics, modeling projects, and technical presentations.</li>
 </ul>
 <hr>
 </section>
 <section id="technical-skills" class="level2">
 <h2 class="anchored" data-anchor-id="technical-skills">Technical Skills</h2>
 <p><strong>PROGRAMMING</strong><br>
-R (tidyverse, glmnet), Python (pandas, NumPy, scikit-learn), SQL, Advanced Excel/VBA</p>
+SQL, R (tidyverse, glmnet), Python (pandas, NumPy, scikit-learn), Advanced Excel/VBA, Power BI, Tableau, Google Looker</p>
 <p><strong>ANALYTICS &amp; MODELING</strong><br>
 Regression, Forecasting, A/B Testing, Cross-Validation, Feature Engineering, Predictive Modeling, Time Series Analysis</p>
-<p><strong>DATA PROCESSING</strong><br>
-APIs, Web Scraping, OCR (Tesseract), OpenCV, Whisper, ETL Workflows, Data Cleaning and Transformation</p>
+<p><strong>BUSINESS ANALYTICS</strong><br>
+KPI Development, Financial &amp; Pricing Analysis, Customer Segmentation, Marketing Analytics, Operational Reporting, Process Improvement, Data Quality</p>
 <p><strong>COMMUNICATION</strong><br>
 Executive-Level Presentations (100+ Stakeholders), Technical Storytelling, University Instruction in Applied Statistics, Cross-Functional Collaboration</p>
-<p><strong>TOOLS</strong><br>
-Tableau, Power BI, Google Looker, GitHub</p>
 <p><strong>LANGUAGES</strong><br>
 English (native), Spanish (professional proficiency)</p>
 
